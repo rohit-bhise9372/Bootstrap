@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List of Movies</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Movie Database</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="movies.html">Movies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="report.html">Report</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- movies Section -->
+    <section id="movies-list" class="container">
+      <h1>List of Movies</h1>
+      <div id="movie-cards"></div>
+    </section>
+
+    <!-- JS Logic using Template Literals -->
+    <script>
+      function generateMovieList() {
+        const movies = [
+          {
+            id: 1,
+            name: "Movie 1",
+            genre: "Action",
+            details: "This is an action-packed movie.",
+          },
+          {
+            id: 2,
+            name: "Movie 2",
+            genre: "Drama",
+            details: "A dramatic story unfolds in this movie",
+          },
+          {
+            id: 3,
+            name: "Movie 3",
+            genre: "Comedy",
+            details: "This is an comedy movie.",
+          },
+        ];
+
+        const container = document.getElementById("movie-cards");
+
+        const cardsHTML = movies
+          .map(
+            (movie) => `
+
+          <div class = "col-md-6 mb-3">
+            <div class="card">
+              <div class = "card-header">
+              <h2>${movie.name}</h2>
+              </div>
+            <div class= "card-body">
+              <p> <span class = "fw-bold">Genre:</span> ${movie.genre}</p>
+              
+              <a href= "movie-details.html?id=${movie.id}" class = "btn btn-primary" >Details</a>
+              </div>
+            </div>
+          </div>
+        `
+          )
+          .join("");
+
+        container.innerHTML = `
+       <div class="row">
+        ${cardsHTML}
+        </div>
+        `;
+      }
+
+      generateMovieList();
+    </script>
+  </body>
+</html>
